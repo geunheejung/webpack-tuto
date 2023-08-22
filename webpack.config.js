@@ -1,11 +1,14 @@
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
 var path = require("path");
+var process = require("process");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "none",
   entry: "./src/index.js",
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(process.cwd(), "dist"),
   },
   module: {
     rules: [
@@ -15,4 +18,12 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin({
+      verbose: true,
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser.js",
+    }),
+  ],
 };
