@@ -1,29 +1,34 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path");
 
-var path = require("path");
-var process = require("process");
-const webpack = require("webpack");
 
 module.exports = {
-  mode: "none",
-  entry: "./src/index.js",
-  output: {
-    path: path.resolve(process.cwd(), "dist"),
+  mode: "development",
+  entry: "./src/index.tsx",
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.tsx?$/,
+        use: ["babel-loader", "ts-loader"],
       },
     ],
   },
+  output: {
+    path: path.join(__dirname, "/dist"),
+    filename: "bundle.js",
+  },
   plugins: [
-    new CleanWebpackPlugin({
-      verbose: true,
-    }),
-    new webpack.ProvidePlugin({
-      process: "process/browser.js",
-    }),
+    new HtmlWebpackPlugin({ template: "./public/index.html" }),
+    new CleanWebpackPlugin(),
   ],
+  devServer: {
+    port: 3000,
+    historyApiFallback: true,
+    hot: true,
+    open: true,
+  },
 };
