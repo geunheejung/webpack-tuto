@@ -1,0 +1,18 @@
+{
+  "name": "webpack-tuto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/geunheejung/webpack-tuto.git",
+  "author": "geunheejung <geunhee0212@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
